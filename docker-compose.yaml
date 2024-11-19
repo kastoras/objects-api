@@ -1,0 +1,29 @@
+services:
+  
+  images-api:
+    build:
+      context: .
+      target: development 
+    ports:
+      - "4001:3030"
+      - "5050:5050"
+    volumes:
+      - ./:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis-cache
+
+  redis-cache:
+    image: redis:7.2-alpine
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASS}
+    env_file:
+      - .env
+    volumes: 
+      - rediscache:/data      
+
+volumes:
+  rediscache:

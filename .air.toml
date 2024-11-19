@@ -1,0 +1,18 @@
+# .air.toml
+
+# Configurations for Air to watch and rebuild Go applications
+[build]
+  cmd = "go build -o ./app main.go" # Command to build the application
+  bin = "./app"                     # Path to the binary after build
+  full_bin = "./app"                # Binary path to run after build (same as bin in this case)
+  delay = 1000                      # Delay before restarting in milliseconds
+  log_color = "true"                # Enable colored logs
+  exclude_dir = ["docs"]            # Exclude directories (like the Swagger docs)
+
+[log]
+  time = true                       # Enable timestamp in logs
+
+[watcher]
+  watch = ["."]
+  ignore = ["docs", "vendor"]       # Directories to ignore
+  extensions = ["go"]               # File extensions to watch
