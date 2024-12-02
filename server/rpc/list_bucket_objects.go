@@ -58,7 +58,8 @@ func (r *RPCServer) listBucketFiles(bucket string, folder string) ([]Image, erro
 	defer cancel()
 
 	it := r.StorageClient.Bucket(bucket).Objects(ctx, &storage.Query{
-		Prefix: folder,
+		Prefix:                   folder,
+		IncludeFoldersAsPrefixes: false,
 	})
 
 	images := []Image{}
@@ -70,6 +71,10 @@ func (r *RPCServer) listBucketFiles(bucket string, folder string) ([]Image, erro
 		}
 		if err != nil {
 			log.Fatalf("Error listing objects: %v", err)
+		}
+
+		if attrs.Name == fmt.Sprintf("%s/", folder) {
+			continue
 		}
 
 		publicURL := getPublicURL(bucket, attrs.Name)
