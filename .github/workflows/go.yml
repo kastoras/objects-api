@@ -1,0 +1,38 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:    
+    - name: Log to Docker Hub
+      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    
+    - uses: actions/checkout@v4
+
+    - name: Generate Version
+      id: version
+      uses: paulhatch/semantic-version@v3
+      with:
+        major: ${{ env.REPO_MAJOR_VERSION }}
+        minor: ${{ env.REPO_MINOR_VERSION }}
+        patch: auto 
+
+    - name: Build the Docker image
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        docker build . --file Dockerfile --target production --tag kastoras/objects-api:${VERSION}
+
+    - name: Push image to docker hub
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        docker image push kastoras/objects-api:${VERSION}
