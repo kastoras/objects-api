@@ -5,7 +5,7 @@ go 1.23.2
 require (
 	cloud.google.com/go/storage v1.43.0
 	github.com/gorilla/mux v1.8.1
-	github.com/kastoras/go-utilities v0.0.0-20241109211124-22c43e2d2740
+	github.com/kastoras/go-utilities v0.0.0-20241204200940-7d47a647e2cf
 	github.com/redis/go-redis/v9 v9.7.0
 	google.golang.org/api v0.205.0
 )
