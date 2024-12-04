@@ -4,7 +4,7 @@ go 1.23.2
 
 require (
 	cloud.google.com/go/storage v1.43.0
-	github.com/gorilla/mux v1.8.1
+	github.com/kastoras/go-utilities v0.0.0-20241204203246-ca0df55f12be
 	github.com/redis/go-redis/v9 v9.7.0
 	google.golang.org/api v0.205.0
 )
@@ -26,7 +26,6 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.13.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
-	github.com/kastoras/go-utilities v0.0.0-20241204200940-7d47a647e2cf // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.54.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.54.0 // indirect
